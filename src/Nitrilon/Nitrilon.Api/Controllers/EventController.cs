@@ -1,44 +1,65 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Nitrilon.Api.Models;
-using System.Diagnostics;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+
+using Nitrilon.DataAccess;
+using Nitrilon.Entities;
+
+using System.Collections.Generic;
 
 namespace Nitrilon.Api.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class EventController : ControllerBase
     {
-        private int _eventId = 0;
-        private Event _event = new();
-        private static List<Event> _events = new();
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            return Ok();
+        }
 
-        [HttpPost(Name = "CreateEvent")]
-        public IActionResult CreateEvent(Event newEvent)
+        [HttpPut]
+        public IActionResult Put(Event eventToUpdate)
+        {
+            return Ok();
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Event>> GetAll()
+        {
+            Repository repository = new();
+            List<Event> events = repository.GetAllEvents();
+            return events;
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Event> Get(int id)
+        {
+            Event e = null;
+            if (id == 3)
+            {
+                e = new() { Id = 3 };
+            }
+            else
+            {
+                return NotFound($"The requested event with id {id} was not found");
+            }
+            return e;
+        }
+
+        [HttpPost]
+        public IActionResult Add(Event newEvent)
         {
             try
             {
-                Event alreadyExists  = _events.Find(e => e.EventId == newEvent.EventId);
-                if (alreadyExists != null) return BadRequest("Event already exists");
-
-                _events.Add(newEvent);
-                Debug.WriteLine($"Event {newEvent.Name} created");
-                _eventId++; // REMOVE THIS LINE AFTER REMOVING EventId FROM Event MODEL
-                return Ok();
-            } catch (Exception e)
-            {
-                return BadRequest(e.Message);
+                Repository r = new();
+                int createdId = r.Save(newEvent);
+                return Ok(createdId);
             }
-
+            catch (Exception e)
+            {
+                return StatusCode(500);
+            }
         }
-
-        [HttpGet(Name = "GetAllEvents")]
-        public IEnumerable<Event> GetAllEvents()
-        {
-            return _events;
-        }
-
-
-
-
     }
 }
