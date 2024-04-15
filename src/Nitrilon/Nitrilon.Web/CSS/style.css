@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+h1 {
+    font-size: 4em;
+    font-family: 'Roboto', sans-serif;
+}
+
+section {
+    display: flex;
+}
+
+section img {
+    width: 50%;
+    margin: 2%;
+    transition: transform 0.05s;
+}
+
+section img:active {
+    transform: rotateZ(5deg) scale(1.1);
+}
