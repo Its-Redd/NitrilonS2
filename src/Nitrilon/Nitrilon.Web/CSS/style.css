@@ -24,3 +24,21 @@ section img {
 section img:active {
     transform: rotateZ(5deg) scale(1.1);
 }
+
+/* Confirmation screen */
+
+#confirmation {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
