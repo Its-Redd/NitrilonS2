@@ -1,25 +1,24 @@
 let img = document.querySelectorAll('img');
+let ratingId;
 
 // Loop through the images and add an event listener to each one then check which 
 // image was clicked
 img.forEach(element => {
     element.addEventListener('click', function() {
-        let imgId = element.getAttribute('id');
-        switch(imgId) {
+        let ratingId = element.getAttribute('id');
+        switch(ratingId) {
             case "1":
-                // TODO: MAKE FUNCTIONALITY FOR THE RED EMOJI
-                alert('You clicked on the red emoji'); //! TEMPORARY
+
                 break;
             case "2":
-                // TODO: MAKE FUNCTIONALITY FOR THE YELLOW EMOJI
-                alert('You clicked on the yellow emoji'); //! TEMPORARY
+
                 break;
             case "3":
-                // TODO: MAKE FUNCTIONALITY FOR THE GREEN EMOJI
-                alert('You clicked on the green emoji'); //! TEMPORARY
                 break;
+                
                 default:
                     alert('There has been an error');
+                    console.error('Error in ratingId switch statement');
         }
     });
 });
