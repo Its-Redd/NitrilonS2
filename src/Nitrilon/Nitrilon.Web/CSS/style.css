@@ -28,7 +28,7 @@ section img:active {
 /* Confirmation screen */
 
 #confirmation {
-    visibility: hidden;
+    visibility: hidden; /* TODO: MAKE TOGGLEABLE WITH JS */
     display: flex;
     flex-direction: column;
     justify-content: center;
