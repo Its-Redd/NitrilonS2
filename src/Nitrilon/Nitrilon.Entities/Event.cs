@@ -8,7 +8,11 @@ namespace Nitrilon.Entities
 {
     public class Event
     {
-        public int Id { get; set; }
+        private int id;
+        public int Id {
+            get { return id; }
+            set { }
+        }
         public DateTime Date { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
