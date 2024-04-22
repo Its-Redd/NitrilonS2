@@ -11,11 +11,59 @@ namespace Nitrilon.Entities
         private int id;
         public int Id {
             get { return id; }
-            set { }
+            set {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Id cannot be negative");
+                }
+                id = value;
+            }
         }
-        public DateTime Date { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public int Attendees { get; set; }
+
+
+        private DateTime date;
+        public DateTime Date {
+            get { return date; }
+            set { 
+                if (value < DateTime.Now)
+                {
+                    throw new ArgumentException("Date cannot be in the past");
+                }
+                date = value;
+            }
+        
+        }
+
+        private string name;
+        public string Name {
+            get { return name; }
+            set {
+                if (string.IsNullOrWhiteSpace(value) || value.Length > 128) // 128 is the maximum length of the column in the database
+                {
+                    throw new ArgumentException("Name cannot be empty");
+                }
+                name = value;
+            }
+        }
+
+        private int attendees;
+        public int Attendees {
+            get { return attendees; }
+            set {
+                if (value < -1)
+                {
+                    throw new ArgumentException("Attendees can not be negative");
+                }
+                attendees = value;
+            }
+        }
+
+        private string description;
+        public string Description { 
+            get { return description; }
+            set {
+                description = value;
+            }
+        }
     }
 }

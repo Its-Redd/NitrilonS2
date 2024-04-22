@@ -2,9 +2,23 @@ let img = document.querySelectorAll('img');
 let apiURL = "https://localhost:6969/api/Event"
 let ratingId;
 
-/* Fetch the events from the API where the date
-is greater than or equal to the current date using sql queries
-*/
+// Fetch data from the API
+fetch(apiURL)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        // Process the data here
+        console.log(data);
+    })
+    .catch(error => {
+        // Handle errors
+        console.error('Error:', error);
+        alert('There has been an error');
+    });
 
 // Loop through the images and add an event listener
 // to each one then check which 
