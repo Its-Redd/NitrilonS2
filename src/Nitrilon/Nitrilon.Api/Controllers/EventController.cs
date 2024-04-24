@@ -32,20 +32,20 @@ namespace Nitrilon.Api.Controllers
             return events;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<Event> Get(int id)
-        {
-            Event e = null;
-            if (id == 3)
-            {
-                e = new() { Id = 3 };
-            }
-            else
-            {
-                return NotFound($"The requested event with id {id} was not found");
-            }
-            return e;
-        }
+        //[HttpGet("{id}")]
+        //public ActionResult<Event> Get(int id)
+        //{
+        //    Event e = null;
+        //    if(id == 3)
+        //    {
+        //        e = new() { Id = 3 };
+        //    }
+        //    else
+        //    {
+        //        return NotFound($"The requested event with id {id} was not found");
+        //    }
+        //    return e;
+        //}
 
         [HttpPost]
         public IActionResult Add(Event newEvent)

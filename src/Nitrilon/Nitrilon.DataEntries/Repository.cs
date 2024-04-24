@@ -1,6 +1,8 @@
-﻿
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+
 using Nitrilon.Entities;
+
+using System.Data;
 
 namespace Nitrilon.DataAccess
 {
@@ -12,7 +14,7 @@ namespace Nitrilon.DataAccess
         {
             List<Event> events = new List<Event>();
 
-            string sql = "SELECT * FROM Events";
+            string sql = $"SELECT * FROM Events;";
 
             // 1: make a SqlConnection object:
             SqlConnection connection = new SqlConnection(connectionString);
@@ -36,14 +38,7 @@ namespace Nitrilon.DataAccess
                 int attendees = Convert.ToInt32(reader["Attendees"]);
                 string description = Convert.ToString(reader["Description"]);
 
-                Event e = new()
-                {
-                    Id = id,
-                    Date = date,
-                    Name = name,
-                    Attendees = attendees,
-                    Description = description,
-                };
+                Event e = new(id, name, date, attendees, description);
 
                 events.Add(e);
             }
@@ -52,6 +47,41 @@ namespace Nitrilon.DataAccess
             connection.Close();
 
             return events;
+        }
+
+        public EventRatingData GetEventRatingDataBy(int eventId)
+        {
+            int badRatingCount = 0;
+            int neutralRatingCount = 0;
+            int goodRatingCount = 0;
+            EventRatingData eventRatingData = default;
+
+            string sql = $"EXEC CountAllowedRatingsForEvent @EventId = {eventId}";
+
+            // 1: make a SqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: make a SqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // TODO: try catchify this:
+            // 3. Open the connection:
+            connection.Open();
+
+            // 4. Execute query:
+            SqlDataReader reader = command.ExecuteReader();
+
+            // 5. Retrieve data from the data reader:
+            while (reader.Read())
+            {
+                badRatingCount = Convert.ToInt32(reader["RatingId1Count"]);
+                neutralRatingCount = Convert.ToInt32(reader["RatingId2Count"]);
+                goodRatingCount = Convert.ToInt32(reader["RatingId3Count"]);
+                eventRatingData = new(badRatingCount, neutralRatingCount, goodRatingCount);
+            }
+            connection.Close();
+
+            return eventRatingData;
         }
 
         public int Save(Event newEvent)
@@ -114,51 +144,37 @@ namespace Nitrilon.DataAccess
             return newId;
         }
 
-        // AI Generated method, not yet tested  or implemented in the API
-        public (int, int, int) GetRatingsForEvent(int eventId)
+        public (int, int, int) GetRatingsFor(Event ev)
         {
-            int rating1 = 0;
-            int rating2 = 0;
-            int rating3 = 0;
-
-            string sql = $"SELECT RatingId, COUNT(*) FROM EventRatings WHERE EventId = {eventId} GROUP BY RatingId";
-
             // 1: make a SqlConnection object:
             SqlConnection connection = new SqlConnection(connectionString);
 
             // 2: make a SqlCommand object:
-            SqlCommand command = new SqlCommand(sql, connection);
+            SqlCommand command = new SqlCommand("CountAllowedRatingsForEvent", connection);
 
-            // 3. Open the connection:
             connection.Open();
-
-            // 4. Execute query:
-            SqlDataReader reader = command.ExecuteReader();
-
-            // 5. Retrieve data from the data reader:
-            while (reader.Read())
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@EventId", ev.Id);
+            int ratingId1Count = 0, ratingId2Count = 0, ratingId3Count = 0;
+            using (SqlDataReader reader = command.ExecuteReader())
             {
-                int ratingId = Convert.ToInt32(reader["RatingId"]);
-                int count = Convert.ToInt32(reader[""]);
+                if (reader.Read())
+                {
+                    ratingId1Count = Convert.ToInt32(reader["RatingId1Count"]);
+                    ratingId2Count = Convert.ToInt32(reader["RatingId2Count"]);
+                    ratingId3Count = Convert.ToInt32(reader["RatingId3Count"]);
 
-                if (ratingId == 1)
-                {
-                    rating1 = count;
+                    Console.WriteLine($"RatingId 1 count: {ratingId1Count}");
+                    Console.WriteLine($"RatingId 2 count: {ratingId2Count}");
+                    Console.WriteLine($"RatingId 3 count: {ratingId3Count}");
                 }
-                else if (ratingId == 2)
+                else
                 {
-                    rating2 = count;
-                }
-                else if (ratingId == 3)
-                {
-                    rating3 = count;
+                    Console.WriteLine("No data found for the specified EventId.");
                 }
             }
 
-            // 6. Close the connection when it is not needed anymore:
-            connection.Close();
-
-            return (rating1, rating2, rating3);
+            return (ratingId1Count, ratingId2Count, ratingId3Count);
         }
     }
 }

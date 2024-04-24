@@ -1,69 +1,100 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nitrilon.Entities
+﻿namespace Nitrilon.Entities
 {
     public class Event
     {
+        #region Fields and constants
+        public readonly DateTime EarliestPossibleEvent = new DateTime(2018, 1, 1);
         private int id;
-        public int Id {
-            get { return id; }
-            set {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Id cannot be negative");
-                }
-                id = value;
-            }
-        }
-
-
-        private DateTime date;
-        public DateTime Date {
-            get { return date; }
-            set { 
-                if (value < DateTime.Now)
-                {
-                    throw new ArgumentException("Date cannot be in the past");
-                }
-                date = value;
-            }
-        
-        }
-
         private string name;
-        public string Name {
-            get { return name; }
-            set {
-                if (string.IsNullOrWhiteSpace(value) || value.Length > 128) // 128 is the maximum length of the column in the database
-                {
-                    throw new ArgumentException("Name cannot be empty");
-                }
-                name = value;
-            }
-        }
-
+        private DateTime date;
         private int attendees;
-        public int Attendees {
-            get { return attendees; }
-            set {
-                if (value < -1)
+        private string description;
+        private EventRatingData ratings;
+        #endregion
+
+        #region Constructors
+        public Event(int id, string name, DateTime date, int attendees, string description)
+        {
+            Id = id;
+            Name = name;
+            Date = date;
+            Attendees = attendees;
+            Description = description;
+        }
+
+        public Event(int id, string name, DateTime date, int attendees, string description, EventRatingData ratings)
+            : this(id, name, date, attendees, description)
+        {
+            Ratings = ratings;
+        }
+        #endregion
+
+        #region Properties
+        public int Id
+        {
+            get => id;
+            private set
+            {
+                ArgumentOutOfRangeException.ThrowIfNegative(value);
+                if (id != value)
                 {
-                    throw new ArgumentException("Attendees can not be negative");
+                    id = value;
                 }
-                attendees = value;
             }
         }
 
-        private string description;
-        public string Description { 
-            get { return description; }
-            set {
-                description = value;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                ArgumentOutOfRangeException.ThrowIfNullOrWhiteSpace(value);
+                if (name != value)
+                {
+                    name = value;
+                }
             }
         }
+
+        public DateTime Date
+        {
+            get => date;
+            set
+            {
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, EarliestPossibleEvent);
+                if (date != value)
+                {
+                    date = value;
+                }
+            }
+        }
+
+        public int Attendees
+        {
+            get => attendees;
+            set
+            {
+                ArgumentOutOfRangeException.ThrowIfLessThan(value, -1);
+                if (attendees != value)
+                {
+                    attendees = value;
+                }
+            }
+        }
+
+        public string Description
+        {
+            get => description;
+            set
+            {
+                if (description != value)
+                {
+                    description = value;
+                }
+            }
+        }
+
+        public EventRatingData Ratings { get => ratings; set => ratings = value; }
+        #endregion
     }
 }

@@ -1,27 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using Nitrilon.DataAccess;
 using Nitrilon.Entities;
 
 namespace Nitrilon.Api.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
+    [ApiController]
     public class EventRatingsController : Controller
     {
-        [HttpPost(Name = "CreateEvent")]
-        public IActionResult CreateEvent(int eventId, int ratingId)
+        [HttpPost]
+        public IActionResult AddEventRating(int eventId, int ratingId)
         {
             try
             {
                 Repository r = new();
                 int createdId = r.SaveEventRating(eventId, ratingId);
-                return Ok();
+                return Ok(createdId);
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return StatusCode(500);
             }
+        }
 
+
+
+        [HttpGet]
+        public ActionResult<EventRatingData> GetEventRatingDataFor(int eventId)
+        {
+            Repository repository = new();
+            EventRatingData eventRatingData = repository.GetEventRatingDataBy(eventId);
+            return Ok(eventRatingData);
         }
     }
 }
