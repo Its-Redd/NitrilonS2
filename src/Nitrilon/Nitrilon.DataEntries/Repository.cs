@@ -113,5 +113,52 @@ namespace Nitrilon.DataAccess
 
             return newId;
         }
+
+        // AI Generated method, not yet tested  or implemented in the API
+        public (int, int, int) GetRatingsForEvent(int eventId)
+        {
+            int rating1 = 0;
+            int rating2 = 0;
+            int rating3 = 0;
+
+            string sql = $"SELECT RatingId, COUNT(*) FROM EventRatings WHERE EventId = {eventId} GROUP BY RatingId";
+
+            // 1: make a SqlConnection object:
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // 2: make a SqlCommand object:
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            // 3. Open the connection:
+            connection.Open();
+
+            // 4. Execute query:
+            SqlDataReader reader = command.ExecuteReader();
+
+            // 5. Retrieve data from the data reader:
+            while (reader.Read())
+            {
+                int ratingId = Convert.ToInt32(reader["RatingId"]);
+                int count = Convert.ToInt32(reader[""]);
+
+                if (ratingId == 1)
+                {
+                    rating1 = count;
+                }
+                else if (ratingId == 2)
+                {
+                    rating2 = count;
+                }
+                else if (ratingId == 3)
+                {
+                    rating3 = count;
+                }
+            }
+
+            // 6. Close the connection when it is not needed anymore:
+            connection.Close();
+
+            return (rating1, rating2, rating3);
+        }
     }
 }
