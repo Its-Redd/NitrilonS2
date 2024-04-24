@@ -4,14 +4,11 @@ let ratingId;
 let allEvents = [];
 let selectedEvent = 1; // ! SKAL VÆRE EVENT ID'ET
 
-/* Fetch the events from the API where the date
-is greater than or equal to the current date using sql queries
-*/
-
-fetchEvents();
 
 
-function fetchEvents() {
+// Setup events when the page loads - fetches all events so the
+// user can choose what event guests are rating
+function SetupEvents() {
   fetch(apiURL)
     .then((response) => response.json())
     .then((data) => {
@@ -19,6 +16,18 @@ function fetchEvents() {
       allEvents = data;
     });
 }
+
+
+/* Loop through the events and create an li element for each one
+ in the ul element with the id "eventsList" in the HTML
+ The LI element should have an event listener that sets the
+ selectedEvent variable to the event id.
+ The event Li should show the name, date and description of the event
+*/
+
+
+
+
 
 // Loop through the images and add an event listener
 // to each one then check which
