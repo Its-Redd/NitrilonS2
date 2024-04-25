@@ -1,3 +1,4 @@
+// Variables
 let img = document.querySelectorAll("section img");
 let apiURL = "https://localhost:7056/api/Event"; 
 let ratingId;
