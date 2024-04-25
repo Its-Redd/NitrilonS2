@@ -12,18 +12,32 @@ namespace Nitrilon.Api.Controllers
     [ApiController]
     public class EventController : ControllerBase
     {
+        /// <summary>
+        /// Deletes an event by ID.
+        /// </summary>
+        /// <param name="id">The ID of the event to delete.</param>
+        /// <returns>The result of the delete operation.</returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
             return Ok();
         }
 
+        /// <summary>
+        /// Updates an existing event.
+        /// </summary>
+        /// <param name="eventToUpdate">The event to update.</param>
+        /// <returns>The result of the update operation.</returns>
         [HttpPut]
         public IActionResult Put(Event eventToUpdate)
         {
             return Ok();
         }
 
+        /// <summary>
+        /// Gets all events.
+        /// </summary>
+        /// <returns>A list of all events.</returns>
         [HttpGet]
         public ActionResult<IEnumerable<Event>> GetAll()
         {
@@ -32,21 +46,11 @@ namespace Nitrilon.Api.Controllers
             return events;
         }
 
-        //[HttpGet("{id}")]
-        //public ActionResult<Event> Get(int id)
-        //{
-        //    Event e = null;
-        //    if(id == 3)
-        //    {
-        //        e = new() { Id = 3 };
-        //    }
-        //    else
-        //    {
-        //        return NotFound($"The requested event with id {id} was not found");
-        //    }
-        //    return e;
-        //}
-
+        /// <summary>
+        /// Adds a new event.
+        /// </summary>
+        /// <param name="newEvent">The event to add.</param>
+        /// <returns>The ID of the newly created event.</returns>
         [HttpPost]
         public IActionResult Add(Event newEvent)
         {
