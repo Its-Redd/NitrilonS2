@@ -19,16 +19,30 @@ async function SetupEvents() {
 // Display all events in a list so the user can choose 
 // what event guests are rating
 function DisplayEvents() {
-  let ul = document.querySelector("#eventList");
-  allEvents.forEach((event) => {
-    let li = document.createElement("li");
-    let cutDate = event.date.split("T")[0];
-    li.textContent = `${event.name} - ${cutDate} - ${event.description}`;
-    li.addEventListener("click", function () {
-      selectedEvent = event.id;
+    let setupPage = document.querySelector("#setup");
+    let ul = document.querySelector("#eventList");
+    allEvents.forEach((event) => {
+        let li = document.createElement("li");
+        let name = document.createElement("h2");
+        let date = document.createElement("h3");
+        let desc = document.createElement("h3");
+        let cutDate = event.date.split("T")[0];
+        
+        name.textContent = event.name;
+        date.textContent = cutDate;
+        desc.textContent = event.description;
+        
+        li.appendChild(name);
+        li.appendChild(date);
+        li.appendChild(desc);
+        
+        ul.appendChild(li);
+
+        li.addEventListener("click", function () {
+            selectedEvent = event.id;
+            setupPage.style.display = "none";
+        });
     });
-    ul.appendChild(li);
-  });
 }
 
 SetupEvents();
