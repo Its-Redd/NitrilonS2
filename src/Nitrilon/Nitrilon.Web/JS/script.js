@@ -53,7 +53,7 @@ SetupEvents();
 img.forEach((element) => {
   element.addEventListener("click", function () {
     let ratingId = element.getAttribute("id");
-    fetch(apiURL, {
+    fetch(`https://localhost:7056/api/EventRatings?eventId=${selectedEvent}&ratingId=${ratingId}`, {
       method: "POST",
       body: JSON.stringify({ selectedEvent, ratingId }),
       headers: {
@@ -62,7 +62,7 @@ img.forEach((element) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("Data added to database");
       });
       let confirmation = document.querySelector("#confirmation");
 
