@@ -1,4 +1,4 @@
-let img = document.querySelectorAll("img");
+let img = document.querySelectorAll("section img");
 let apiURL = "https://localhost:7056/api/Event"; 
 let ratingId;
 let allEvents = [];
@@ -64,12 +64,12 @@ img.forEach((element) => {
       .then((data) => {
         console.log(data);
       });
-    //   TODO: Vis feedback, fjern efter X antal sekunder - eksempel:
+      let confirmation = document.querySelector("#confirmation");
+
     setTimeout(() => {
-      // Sker instant:
-      console.log("Feedback vises");
-    }, 2000);
-    // Sker efter 2 sekunder:
-    console.log("Fjerner feedback.");
+        confirmation.style.visibility = "hidden";
+    }, 3000);
+    confirmation.style.visibility = "visible";
+    
   });
 });

@@ -78,17 +78,22 @@ section img:active {
 /* Confirmation screen */
 
 #confirmation {
-    visibility: hidden; /* TODO: MAKE TOGGLEABLE WITH JS */
+    visibility: hidden; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1;
-    background-color: white;
+    background-color: rgb(112, 172, 176);
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
 }
+
+#confirmation h1 {
+    color: black
+}
+
 
