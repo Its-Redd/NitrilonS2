@@ -4,8 +4,7 @@
     flex-direction: column;
     align-items: center;
     z-index: 1;
-    background-color: gray;
-    color: white;
+    background-color: rgb(88, 134, 137);
     position: absolute;
     top: 0;
     left: 0;
@@ -28,6 +27,9 @@
     flex-direction: column;
     background-color: lightgray;
     border-radius: 20px;
+    border-color: black;
+    border-style: double;
+    border-width: 8px;
     padding: 2% 12.5% 2% 2%;
     margin: 1%;
     transition: transform 0.05s;
@@ -39,6 +41,7 @@
 
 /* General */
 body {
+    background-color: rgb(112, 172, 176);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,6 +50,7 @@ body {
 }
 
 h1 {
+    color: white;
     font-size: 4em;
     font-family: 'Roboto', sans-serif;
 }
