@@ -69,7 +69,7 @@ img.forEach((element) => {
 
     setTimeout(() => {
         confirmation.style.visibility = "hidden";
-    }, 3000);
+    }, 2500);
     confirmation.style.visibility = "visible";
     
   });

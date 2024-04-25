@@ -7,7 +7,7 @@ body,
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 100vh;
 }
 
 h1,
@@ -52,6 +52,7 @@ section img:active {
     left: 0;
     width: 100%;
     height: 10000%;
+    overflow: hidden;
 }
 
 #setup ul {
@@ -80,6 +81,14 @@ section img:active {
 }
 
 /* * Confirmation screen specific */
+
+#confirmation {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 
 #confirmation h1 {
     color: black;
