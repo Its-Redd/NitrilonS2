@@ -2,9 +2,7 @@ let img = document.querySelectorAll("img");
 let apiURL = "https://localhost:7056/api/Event";
 let ratingId;
 let allEvents = [];
-let selectedEvent = 1; // ! SKAL VÆRE EVENT ID'ET
-
-
+let selectedEvent = -1; // ! SKAL VÆRE EVENT ID'ET
 
 // Setup events when the page loads - fetches all events so the
 // user can choose what event guests are rating
@@ -12,11 +10,10 @@ function SetupEvents() {
   fetch(apiURL)
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       allEvents = data;
     });
+  DisplayEvents();
 }
-
 
 /* Loop through the events and create an li element for each one
  in the ul element with the id "eventsList" in the HTML
@@ -24,10 +21,19 @@ function SetupEvents() {
  selectedEvent variable to the event id.
  The event Li should show the name, date and description of the event
 */
+function DisplayEvents() {
+  let ul = document.querySelector("#eventList");
+  allEvents.forEach((event) => {
+    let li = document.createElement("li");
+    li.textContent = `${event.name} - ${event.date} - ${event.description}`;
+    li.addEventListener("click", function () {
+      selectedEvent = event.id;
+    });
+    ul.appendChild(li);
+  });
+}
 
-
-
-
+SetupEvents();
 
 // Loop through the images and add an event listener
 // to each one then check which
@@ -42,7 +48,6 @@ img.forEach((element) => {
         "Content-Type": "application/json",
       },
     })
-      // ! Måske skal du bruge dem her? - jeg bruger dem ikke.
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -54,9 +59,5 @@ img.forEach((element) => {
     }, 2000);
     // Sker efter 2 sekunder:
     console.log("Fjerner feedback.");
-    // ! Husk at brug metoder til at ændre siderne. - og rydde lidt op i din kode
-    // ! Jeg havde personligt redirected imellem HTML sider, og så gemt relevant data i sessionStorage.
-    // Læs dette link VV
-    // https://stackoverflow.com/questions/11609376/share-data-between-html-pages
   });
 });
