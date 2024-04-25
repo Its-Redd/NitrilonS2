@@ -1,17 +1,21 @@
 let img = document.querySelectorAll("img");
-let apiURL = "https://localhost:7056/api/Event";
+let apiURL = "https://localhost:7056/api/Event"; // ! Har ændret dit API URL!!!
 let ratingId;
 let allEvents = [];
+
 let selectedEvent = -1; // ! SKAL VÆRE EVENT ID'ET
 
 // Setup events when the page loads - fetches all events so the
 // user can choose what event guests are rating
-function SetupEvents() {
-  fetch(apiURL)
+async function SetupEvents() {
+  await fetch(apiURL)
     .then((response) => response.json())
     .then((data) => {
       allEvents = data;
+      console.log("Data: " + data);
     });
+  console.log("All events: " + allEvents); 
+
   DisplayEvents();
 }
 
