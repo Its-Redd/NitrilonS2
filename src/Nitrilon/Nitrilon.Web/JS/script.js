@@ -1,9 +1,8 @@
 let img = document.querySelectorAll("img");
-let apiURL = "https://localhost:7056/api/Event"; // ! Har ændret dit API URL!!!
+let apiURL = "https://localhost:7056/api/Event"; 
 let ratingId;
 let allEvents = [];
-
-let selectedEvent = -1; // ! SKAL VÆRE EVENT ID'ET
+let selectedEvent = -1;
 
 // Setup events when the page loads - fetches all events so the
 // user can choose what event guests are rating
@@ -12,24 +11,19 @@ async function SetupEvents() {
     .then((response) => response.json())
     .then((data) => {
       allEvents = data;
-      console.log("Data: " + data);
     });
-  console.log("All events: " + allEvents); 
 
   DisplayEvents();
 }
 
-/* Loop through the events and create an li element for each one
- in the ul element with the id "eventsList" in the HTML
- The LI element should have an event listener that sets the
- selectedEvent variable to the event id.
- The event Li should show the name, date and description of the event
-*/
+// Display all events in a list so the user can choose 
+// what event guests are rating
 function DisplayEvents() {
   let ul = document.querySelector("#eventList");
   allEvents.forEach((event) => {
     let li = document.createElement("li");
-    li.textContent = `${event.name} - ${event.date} - ${event.description}`;
+    let cutDate = event.date.split("T")[0];
+    li.textContent = `${event.name} - ${cutDate} - ${event.description}`;
     li.addEventListener("click", function () {
       selectedEvent = event.id;
     });
