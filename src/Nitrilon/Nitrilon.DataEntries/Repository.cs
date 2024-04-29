@@ -177,4 +177,6 @@ namespace Nitrilon.DataAccess
             return (ratingId1Count, ratingId2Count, ratingId3Count);
         }
     }
+
+ 
 }
