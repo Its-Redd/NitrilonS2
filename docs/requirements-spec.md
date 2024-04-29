@@ -1,4 +1,5 @@
 # KRAVSPECIFIKATION NITRILON
+
 Kravspecifikationen opdeles i subsystems:
 
 Subsystem 01: Event Rating
@@ -6,11 +7,13 @@ Subsystem 02: Medlemshåndtering
 Subsystem 03: Rollespilsgrupper
 
 ## Subsystem 01: Event Rating
+
 Aktører:
-* System: Den tablet og webpage som gæsten interagerer med. 
-* Gæst: En person til Nitricon event.
-* Eventansvarlig: den der skal have vist oversigterne over gæsternes bedømmelse.
-* Klargøringsansvalig: den der klargører devicet til at gæsterne kan rate eventet.
+
+- System: Den tablet og webpage som gæsten interagerer med.
+- Gæst: En person til Nitricon event.
+- Eventansvarlig: den der skal have vist oversigterne over gæsternes bedømmelse.
+- Klargøringsansvalig: den der klargører devicet til at gæsterne kan rate eventet.
 
 01: En gæst skal kunne bedømme oplevelsen af et event, med valg af én værdi på en skala med tre niveauer.
 
@@ -26,20 +29,30 @@ Aktører:
 
 07: Når den klargøringsansvarlige har valgt et event, skal systemet viderestille til bedømmelsessiden.
 
-## Ikke-funktionelle krav
-# IKKE_FUNKTIONELLE KRAV
-Systemet skal overholde følgende ikke-funktionelle krav:
-01. Databasen skal hostes på en Microsoft SQL Express Server 2019 på din lokale maskine.
+# Subsystem 02: Medlemshåndtering
 
-02. Backend skal udvikles i C# med Visual Studio 2022.
+## Aktører
 
-03. Backend skal være en ASP.NET Core application med .NET 8 som runtime.
+- Medlemsansvarlige: Den der skal kunne tilføje, fjerne og se medlemmer samt medlemskab
 
-04. Backend skal hostes på en IIS Express på din lokale maskine til udvikling.
+1. Den medlemsansvarlige skal have et overblik over alle medlemmer, medlemskabs type og status.
+2. Den medlemsansvarlige skal have mulighed for at sætte et medlems status til passiv/aktiv.
+3. Den medlemsansvarlige skal kunne indmelde nye medlemmer.
+4. Den medlemsansvarlige skal kunne udmelde medlemmer.
 
-05. Backend skal til produktion kunne deployes på en Windows Server 2019 maskine på en IIS med .NET 8 som runtime.
+# Ikke-funktionelle krav
 
-06. Alle frontends skal udvikles i HTML5, CSS3 og javascript eller tilsvarende.
+Systemet skal overholde følgende ikke-funktionelle krav: 01. Databasen skal hostes på en Microsoft SQL Express Server 2019 på din lokale maskine.
+
+2.  Backend skal udvikles i C# med Visual Studio 2022.
+
+3.  Backend skal være en ASP.NET Core application med .NET 8 som runtime.
+
+4.  Backend skal hostes på en IIS Express på din lokale maskine til udvikling.
+
+5.  Backend skal til produktion kunne deployes på en Windows Server 2019 maskine på en IIS med .NET 8 som runtime.
+
+6.  Alle frontends skal udvikles i HTML5, CSS3 og javascript eller tilsvarende.
 
 07a. Frontend til Event Rating skal designes til og kunne afvikles i en browser på en iOS tablet.
 
@@ -64,6 +77,5 @@ Systemet skal overholde følgende ikke-funktionelle krav:
 10a. Kommunikation mellem klient og server skal anvende HTTP eller HTTPS som protokol.
 
 10b. Kommunikation mellem klient og server skal anvende JSON som dataformat.
-
 
 NOTE: Der skal ikke tages hensyn til sikkerhed, GDPR, kryptering mv., da det ligger uden for fagets mål.
