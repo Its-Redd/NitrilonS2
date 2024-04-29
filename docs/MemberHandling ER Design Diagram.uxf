@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>14</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>182</x>
+      <y>168</y>
+      <w>322</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes> Members
+-
+*MemberId: int {PK}*
+*MembershipId: int {FK}*
+*Name: nvarchar(128)*
+*JoinDate: DateTime*
+PhoneNumber: nvarchar(16)
+EmailAdress: nvarchar(255)
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>168</y>
+      <w>252</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Memberships
+-
+*MembershipId: int {pk}*
+*Name: nvarchar(32)*
+*Description: nvarchar(32)*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>490</x>
+      <y>210</y>
+      <w>210</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>504</x>
+      <y>224</y>
+      <w>56</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>1..*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>644</x>
+      <y>224</y>
+      <w>28</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>1</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
