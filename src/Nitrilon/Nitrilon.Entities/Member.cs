@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace Nitrilon.Entities
 {
-    internal class Member
+    public class Member
     {
         #region Fields and constants
         private int memberId;
         private int membershipId;
         private string name;
         private DateOnly joinDate;
-        private string? phoneNumber; 
-        private string? emailAdress;
+
+        private string phoneNumber;
+        private string emailAdress;
+
         #endregion
 
         #region Constructors
+        
         public Member(int memberId, int membershipId, string name, DateOnly joinDate, string phoneNumber, string emailAdress)
         {
             MemberId = memberId;
@@ -27,6 +30,8 @@ namespace Nitrilon.Entities
             PhoneNumber = phoneNumber;
             EmailAdress = emailAdress;
         }
+
+
         #endregion
 
         #region Properties
@@ -41,7 +46,6 @@ namespace Nitrilon.Entities
                     throw new ArgumentOutOfRangeException("MemberId cannot be negative");
                 }
                 memberId = value;
-
             }
         }
 
@@ -55,7 +59,6 @@ namespace Nitrilon.Entities
                     throw new ArgumentOutOfRangeException("MembershipId cannot be negative");
                 }
                 membershipId = value;
-
             }
         }
 
@@ -66,10 +69,9 @@ namespace Nitrilon.Entities
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentOutOfRangeException("Name cannot be null or empty");
+                    throw new ArgumentException("MembershipName cannot be null or empty");
                 }
                 name = value;
-
             }
         }
 
@@ -78,22 +80,11 @@ namespace Nitrilon.Entities
             get => joinDate;
             set
             {
-                if(joinDate < DateOnly.FromDateTime(DateTime.Now.AddYears(-100)))
+                if (joinDate < DateOnly.FromDateTime(DateTime.Now.AddYears(-100)))
                 {
-                    throw new ArgumentOutOfRangeException("Join date cannot be more than 100 year in the past");
+                    throw new ArgumentOutOfRangeException("JoinDate cannot be earlier than 100 years ago");
                 }
                 joinDate = value;
-
-            }
-        }
-
-        public string PhoneNumber
-        {
-            get => phoneNumber;
-            set
-            {
-                phoneNumber = value;
-
             }
         }
 
@@ -102,7 +93,25 @@ namespace Nitrilon.Entities
             get => emailAdress;
             set
             {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("EmailAdress cannot be null or empty");
+                }
                 emailAdress = value;
+            }
+        }
+
+
+        public string PhoneNumber
+        {
+            get => phoneNumber;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException("PhoneNumber cannot be null or empty");
+                }
+                phoneNumber = value;
             }
         }
 
