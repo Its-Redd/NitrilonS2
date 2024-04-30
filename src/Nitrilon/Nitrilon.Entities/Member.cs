@@ -116,9 +116,5 @@ namespace Nitrilon.Entities
         }
 
         #endregion
-
-
-
-
     }
 }
