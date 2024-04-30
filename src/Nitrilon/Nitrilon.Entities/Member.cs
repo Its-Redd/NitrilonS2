@@ -13,8 +13,8 @@ namespace Nitrilon.Entities
         private int membershipId;
         private string name;
         private DateOnly joinDate;
-        private string phoneNumber;
-        private string emailAdress;
+        private string? phoneNumber; 
+        private string? emailAdress;
         #endregion
 
         #region Constructors

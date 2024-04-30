@@ -35,8 +35,8 @@ Aktører:
 
 - Medlemsansvarlige: Den der skal kunne tilføje, fjerne og se medlemmer samt medlemskab
 
-1. Den medlemsansvarlige skal have et overblik over alle medlemmer, medlemskabs type og status.
-2. Den medlemsansvarlige skal have mulighed for at sætte et medlems status til passiv/aktiv.
+1. Den medlemsansvarlige skal have et overblik over alle medlemmer og deres medlemskabs type.
+2. Den medlemsansvarlige skal have mulighed for at sætte et medlemskab til passiv/aktiv.
 3. Den medlemsansvarlige skal kunne indmelde nye medlemmer.
 4. Den medlemsansvarlige skal kunne udmelde medlemmer.
 
