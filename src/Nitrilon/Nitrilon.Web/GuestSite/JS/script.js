@@ -19,6 +19,8 @@ async function SetupEvents() {
 
 // Display all events in a list so the user can choose 
 // what event guests are rating
+
+// TODO: only display events that are in the future or in the past 3 days
 function DisplayEvents() {
     let setupPage = document.querySelector("#setup");
     let ul = document.querySelector("#eventList");
