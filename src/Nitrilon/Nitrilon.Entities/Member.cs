@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Nitrilon.Entities
+﻿namespace Nitrilon.Entities
 {
     public class Member
     {
@@ -20,7 +14,7 @@ namespace Nitrilon.Entities
         #endregion
 
         #region Constructors
-        
+
         public Member(int memberId, int membershipId, string name, DateTime joinDate, string phoneNumber, string emailAdress)
         {
             MemberId = memberId;

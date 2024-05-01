@@ -2,8 +2,6 @@
 
 using Nitrilon.Entities;
 
-using System.Data;
-
 namespace Nitrilon.DataAccess
 {
     public class MemberRepo : Repository

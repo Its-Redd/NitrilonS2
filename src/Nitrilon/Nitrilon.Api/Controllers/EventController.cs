@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 using Nitrilon.DataAccess;
 using Nitrilon.Entities;
-
-using System.Collections.Generic;
 
 namespace Nitrilon.Api.Controllers
 {
