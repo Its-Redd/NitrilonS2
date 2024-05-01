@@ -1,8 +1,8 @@
 ﻿namespace Nitrilon.DataAccess
 {
-    public class MemberRepository : Repository
+    public class MemberRepo : Repository
     {
-        public MemberRepository() : base()
+        public MemberRepo() : base()
         {
 
         }
