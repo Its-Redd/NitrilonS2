@@ -23,7 +23,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository r = new();
+                EventRepo r = new();
                 int createdId = r.SaveEventRating(eventId, ratingId);
                 return Ok(createdId);
             }
@@ -41,7 +41,7 @@ namespace Nitrilon.Api.Controllers
         [HttpGet]
         public ActionResult<EventRatingData> GetEventRatingDataFor(int eventId)
         {
-            Repository repository = new();
+            EventRepo repository = new();
             EventRatingData eventRatingData = repository.GetEventRatingDataBy(eventId);
             return Ok(eventRatingData);
         }

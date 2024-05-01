@@ -41,7 +41,7 @@ namespace Nitrilon.Api.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Event>> GetAll()
         {
-            Repository repository = new();
+            EventRepo repository = new();
             List<Event> events = repository.GetAllEvents();
             return events;
         }
@@ -56,7 +56,7 @@ namespace Nitrilon.Api.Controllers
         {
             try
             {
-                Repository r = new();
+                EventRepo r = new();
                 int createdId = r.Save(newEvent);
                 return Ok(createdId);
             }
