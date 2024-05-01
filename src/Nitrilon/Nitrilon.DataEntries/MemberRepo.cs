@@ -13,7 +13,7 @@ namespace Nitrilon.DataAccess
 
 
 
-        public List<Member> GetAllMembers()
+        public IEnumerable<Member> GetAllMembers()
         {
             List<Member> members = new List<Member>();
 

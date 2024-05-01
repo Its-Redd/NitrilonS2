@@ -25,7 +25,7 @@ namespace Nitrilon.DataAccess
 
         protected SqlDataReader Execute(string sql)
         {
-            if (sql is null)
+            if (sql == null)
             {
                 throw new ArgumentNullException(nameof(sql));
             }

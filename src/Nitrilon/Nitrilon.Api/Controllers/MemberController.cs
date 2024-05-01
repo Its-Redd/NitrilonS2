@@ -1,31 +1,45 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Nitrilon.DataAccess;
+using Nitrilon.Entities;
 
 namespace Nitrilon.Api.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class MemberController : ControllerBase
     {
         [HttpGet]
-        [Route("api/member")]
         public IActionResult GetAllMembers()
         {
-            return Ok();
+            MemberRepo repo = new();
+            return Ok(repo.GetAllMembers());
         }
 
         [HttpPost]
-        [Route("api/member")]
-        public IActionResult CreateMember()
+        public IActionResult CreateMember(Member newMember)
         {
-            return Ok();
+            MemberRepo repo = new();
+            try
+            {
+                repo.CreateMember(newMember);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Could not create member", e);
+            }
+
+
+
+
         }
 
         [HttpDelete]
-        [Route("api/member")]
         public IActionResult DeleteMember()
         {
             return Ok();
         }
-        
+
 
 
     }

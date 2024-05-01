@@ -8,8 +8,8 @@
         private string name;
         private DateTime joinDate;
 
-        private string phoneNumber;
-        private string emailAdress;
+        private string? phoneNumber;
+        private string? emailAdress;
 
         #endregion
 
@@ -74,15 +74,15 @@
             get => joinDate;
             set
             {
-                if (joinDate < DateTime.Now.AddYears(-100))
+                if (value < DateTime.Now.AddYears(-100))
                 {
-                    throw new ArgumentOutOfRangeException("JoinDate cannot be earlier than 100 years ago");
+                    throw new ArgumentException("JoinDate cannot be earlier than 100 years ago");
                 }
                 joinDate = value;
             }
         }
 
-        public string EmailAdress
+        public string? EmailAdress
         {
             get => emailAdress;
             set
@@ -96,7 +96,7 @@
         }
 
 
-        public string PhoneNumber
+        public string? PhoneNumber
         {
             get => phoneNumber;
             set
