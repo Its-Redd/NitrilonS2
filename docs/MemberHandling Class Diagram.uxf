@@ -72,8 +72,9 @@
 +GetAllMembers()
 +CreateMember()
 +DeleteMember()
-+ChangeMembership()
-
++UpdateMember()
++GetMemberById()
++GetMemberByMembership()
 </panel_attributes>
     <additional_attributes/>
   </element>

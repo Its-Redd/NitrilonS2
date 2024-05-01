@@ -12,7 +12,7 @@ namespace Nitrilon.Entities
         private int memberId;
         private int membershipId;
         private string name;
-        private DateOnly joinDate;
+        private DateTime joinDate;
 
         private string phoneNumber;
         private string emailAdress;
@@ -21,7 +21,7 @@ namespace Nitrilon.Entities
 
         #region Constructors
         
-        public Member(int memberId, int membershipId, string name, DateOnly joinDate, string phoneNumber, string emailAdress)
+        public Member(int memberId, int membershipId, string name, DateTime joinDate, string phoneNumber, string emailAdress)
         {
             MemberId = memberId;
             MembershipId = membershipId;
@@ -75,12 +75,12 @@ namespace Nitrilon.Entities
             }
         }
 
-        public DateOnly JoinDate
+        public DateTime JoinDate
         {
             get => joinDate;
             set
             {
-                if (joinDate < DateOnly.FromDateTime(DateTime.Now.AddYears(-100)))
+                if (joinDate < DateTime.Now.AddYears(-100))
                 {
                     throw new ArgumentOutOfRangeException("JoinDate cannot be earlier than 100 years ago");
                 }
