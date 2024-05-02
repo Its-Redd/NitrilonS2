@@ -52,9 +52,9 @@ namespace Nitrilon.DataAccess
         }
 
         // Delete member by id
-        public void DeleteMember(int memberId)
+        public void DeleteMember(Member member)
         {
-            string sql = $"DELETE FROM Members WHERE MemberId = {memberId};";
+            string sql = $"DELETE FROM Members WHERE MemberId = {member.MemberId};";
 
             // Execute query:
             Execute(sql);

@@ -47,12 +47,12 @@ namespace Nitrilon.Api.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteMember(int id)
+        public IActionResult DeleteMember(Member member)
         {
             MemberRepo repo = new();
             try
             {
-                repo.DeleteMember(id);
+                repo.DeleteMember(member);
                 return Ok();
             }
             catch

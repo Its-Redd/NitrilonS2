@@ -34,18 +34,22 @@ fetch("https://localhost:7056/api/Member")
 
         del.textContent = "Delete";
         del.id = "delete";
+
         del.addEventListener("click", function() {
-            fetch("https://localhost:7056/api/Member/" + Member.id, {
-                method: "DELETE"
-            })
-            .then((response) => {
-                if(response.ok){
-                    li.remove();
-                }
-            })
-            .catch((error) => {
-                console.error("Error deleting member:", error);
-            });
+            // Display confirmation pop-up
+            if (confirm("Are you sure you want to delete this member?")) {
+                console.log(Member);
+                fetch("https://localhost:7056/api/Member/", {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(Member)
+                });
+
+                // Remove the member from the list
+                li.remove();
+            }
         });
 
         edit.textContent = "Edit";
