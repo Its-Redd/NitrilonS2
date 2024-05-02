@@ -20,9 +20,9 @@ fetch("https://localhost:7056/api/Member")
         h2.textContent = Member.name;
 
         if(Member.membershipId == 1){
-            p.textContent = "Aktivt Medlem";
+            p.textContent = "Aktiv";
         } else if(Member.membershipId == 2){
-            p.textContent = "Passivt Medlem";
+            p.textContent = "Passiv";
         };
 
         let date = Member.joinDate.split("T")[0];
@@ -72,10 +72,10 @@ fetch("https://localhost:7056/api/Member")
             let membershipSelect = document.createElement("select");
             let activeOption = document.createElement("option");
             activeOption.value = 1;
-            activeOption.textContent = "Aktivt Medlem";
+            activeOption.textContent = "Aktiv";
             let passiveOption = document.createElement("option");
             passiveOption.value = 2;
-            passiveOption.textContent = "Passivt Medlem";
+            passiveOption.textContent = "Passiv";
             membershipSelect.appendChild(activeOption);
             membershipSelect.appendChild(passiveOption);
             membershipSelect.value = Member.membershipId;
@@ -107,6 +107,8 @@ fetch("https://localhost:7056/api/Member")
                 Member.joinDate = joinDateInput.value;
                 Member.phoneNumber = phoneNumberInput.value;
                 Member.emailAdress = emailInput.value;
+
+                console.log(Member);
 
                 // Update the member in the database
                 fetch("https://localhost:7056/api/Member/" + Member.id, {
