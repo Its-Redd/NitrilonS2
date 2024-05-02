@@ -24,9 +24,9 @@ namespace Nitrilon.Api.Controllers
                 repo.CreateMember(newMember);
                 return Ok();
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception("Could not create member", e);
+                throw new Exception("Could not create member");
             }
 
 
@@ -35,9 +35,21 @@ namespace Nitrilon.Api.Controllers
         }
 
         [HttpDelete]
-        public IActionResult DeleteMember()
+        public IActionResult DeleteMember(int id)
         {
-            return Ok();
+            MemberRepo repo = new();
+            try
+            {
+                repo.DeleteMember(id);
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception("Could not delete member");
+            }
+
+
+
         }
 
 

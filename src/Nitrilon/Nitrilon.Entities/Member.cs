@@ -17,7 +17,6 @@
 
         public Member(int memberId, int membershipId, string name, DateTime joinDate, string phoneNumber, string emailAdress)
         {
-            MemberId = memberId;
             MembershipId = membershipId;
             Name = name;
             JoinDate = joinDate;
@@ -33,7 +32,7 @@
         public int MemberId
         {
             get => memberId;
-            private set
+            set
             {
                 if (value < 0)
                 {
@@ -46,7 +45,7 @@
         public int MembershipId
         {
             get => membershipId;
-            private set
+            set
             {
                 if (value < 0)
                 {
@@ -89,9 +88,9 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("EmailAdress cannot be null or empty");
+                    value = null;
                 }
-                emailAdress = value;
+                emailAdress = "Emailadresse ikke tilknyttet";
             }
         }
 
@@ -103,7 +102,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("PhoneNumber cannot be null or empty");
+                    value = "Nummer ikke tilknyttet";
                 }
                 phoneNumber = value;
             }
