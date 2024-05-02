@@ -4,8 +4,6 @@ fetch("https://localhost:7056/api/Member")
     // Get the <section> element
     let memberList = document.querySelector("#memberList");
 
-    console.log(data);
-
     // Loop through the events and create <li> elements
     data.forEach((Member) => {
       let li = document.createElement("li");
@@ -111,7 +109,7 @@ fetch("https://localhost:7056/api/Member")
                 console.log(Member);
 
                 // Update the member in the database
-                fetch("https://localhost:7056/api/Member/" + Member.id, {
+                fetch("https://localhost:7056/api/Member/", {
                     method: "PUT",
                     headers: {
                         "Content-Type": "application/json"
