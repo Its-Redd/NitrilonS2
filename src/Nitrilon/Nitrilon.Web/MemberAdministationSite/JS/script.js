@@ -53,39 +53,100 @@ fetch("https://localhost:7056/api/Member")
         edit.textContent = "Edit";
         edit.id = "edit";
         edit.addEventListener("click", function() {
-            let name = prompt("Name", Member.name);
-            let membershipId = prompt("MembershipId", Member.membershipId);
-            let joinDate = prompt("JoinDate", Member.joinDate);
-            let phoneNumber = prompt("PhoneNumber", Member.phoneNumber);
-            let emailAdress = prompt("EmailAdress", Member.emailAdress);
+            // Create a modal element
+            let modal = document.createElement("div");
+            modal.classList.add("modal");
 
-            let member = {
-                name: name,
-                membershipId: membershipId,
-                joinDate: joinDate,
-                phoneNumber: phoneNumber,
-                emailAdress: emailAdress
-            };
+            // Create form elements for editing member data
+            let form = document.createElement("form");
 
-            fetch("https://localhost:7056/api/Member/" + Member.id, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(member)
-            })
-            .then((response) => {
-                if(response.ok){
-                    h2.textContent = name;
-                    p.textContent = membershipId;
-                    p2.textContent = joinDate;
-                    p3.textContent = phoneNumber;
-                    p4.textContent = emailAdress;
-                }
-            })
-            .catch((error) => {
-                console.error("Error updating member:", error);
+            // Create input elements for editing member data
+            let nameLabel = document.createElement("label");
+            nameLabel.textContent = "Name:";
+            let nameInput = document.createElement("input");
+            nameInput.type = "text";
+            nameInput.value = Member.name;
+
+            let membershipLabel = document.createElement("label");
+            membershipLabel.textContent = "Membership:";
+            let membershipSelect = document.createElement("select");
+            let activeOption = document.createElement("option");
+            activeOption.value = 1;
+            activeOption.textContent = "Aktivt Medlem";
+            let passiveOption = document.createElement("option");
+            passiveOption.value = 2;
+            passiveOption.textContent = "Passivt Medlem";
+            membershipSelect.appendChild(activeOption);
+            membershipSelect.appendChild(passiveOption);
+            membershipSelect.value = Member.membershipId;
+
+            let joinDateLabel = document.createElement("label");
+            joinDateLabel.textContent = "Join Date:";
+            let joinDateInput = document.createElement("input");
+            joinDateInput.type = "date";
+            joinDateInput.value = Member.joinDate.split("T")[0];
+
+            let phoneNumberLabel = document.createElement("label");
+            phoneNumberLabel.textContent = "Phone Number:";
+            let phoneNumberInput = document.createElement("input");
+            phoneNumberInput.type = "text";
+            phoneNumberInput.value = Member.phoneNumber;
+
+            let emailLabel = document.createElement("label");
+            emailLabel.textContent = "Email Address:";
+            let emailInput = document.createElement("input");
+            emailInput.type = "email";
+            emailInput.value = Member.emailAdress;
+
+            let saveButton = document.createElement("button");
+            saveButton.textContent = "Save";
+            saveButton.addEventListener("click", function() {
+                // Update member data
+                Member.name = nameInput.value;
+                Member.membershipId = parseInt(membershipSelect.value);
+                Member.joinDate = joinDateInput.value;
+                Member.phoneNumber = phoneNumberInput.value;
+                Member.emailAdress = emailInput.value;
+
+                // Update the member in the database
+                fetch("https://localhost:7056/api/Member/" + Member.id, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(Member)
+                })
+
+                // Close the modal
+                modal.remove();
             });
+
+            let cancelButton = document.createElement("button");
+            cancelButton.textContent = "Cancel";
+            cancelButton.addEventListener("click", function() {
+                // Close the modal without saving changes
+                modal.remove();
+            });
+
+            // Append input elements to the form
+            form.appendChild(nameLabel);
+            form.appendChild(nameInput);
+            form.appendChild(membershipLabel);
+            form.appendChild(membershipSelect);
+            form.appendChild(joinDateLabel);
+            form.appendChild(joinDateInput);
+            form.appendChild(phoneNumberLabel);
+            form.appendChild(phoneNumberInput);
+            form.appendChild(emailLabel);
+            form.appendChild(emailInput);
+            form.appendChild(saveButton);
+            form.appendChild(cancelButton);
+
+            // Append the form to the modal
+            modal.appendChild(form);
+
+            // Append the modal to the document body
+            document.body.appendChild(modal);
         });
     
 
@@ -96,6 +157,8 @@ fetch("https://localhost:7056/api/Member")
         li.appendChild(p2);
         li.appendChild(p3);
         li.appendChild(p4);
+        li.appendChild(del);
+        li.appendChild(edit);
 
 
 
