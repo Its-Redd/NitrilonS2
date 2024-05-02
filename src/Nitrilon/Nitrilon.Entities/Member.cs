@@ -17,6 +17,7 @@
 
         public Member(int memberId, int membershipId, string name, DateTime joinDate, string phoneNumber, string emailAdress)
         {
+            MemberId = memberId;
             MembershipId = membershipId;
             Name = name;
             JoinDate = joinDate;
@@ -62,7 +63,7 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("MembershipName cannot be null or empty");
+                    throw new ArgumentException("Name cannot be null or empty");
                 }
                 name = value;
             }
@@ -88,9 +89,9 @@
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    value = null;
+                    value = "Emailadresse ikke tilknyttet";
                 }
-                emailAdress = "Emailadresse ikke tilknyttet";
+                emailAdress = value;
             }
         }
 

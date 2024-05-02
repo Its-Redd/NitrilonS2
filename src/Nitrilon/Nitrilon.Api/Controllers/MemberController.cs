@@ -28,10 +28,22 @@ namespace Nitrilon.Api.Controllers
             {
                 throw new Exception("Could not create member");
             }
+        }
 
-
-
-
+        // Update member by id
+        [HttpPut]
+        public IActionResult UpdateMember(Member member)
+        {
+            MemberRepo repo = new();
+            try
+            {
+                repo.UpdateMember(member);
+                return Ok();
+            }
+            catch
+            {
+                throw new Exception("Could not update member");
+            }
         }
 
         [HttpDelete]
@@ -47,9 +59,6 @@ namespace Nitrilon.Api.Controllers
             {
                 throw new Exception("Could not delete member");
             }
-
-
-
         }
 
 

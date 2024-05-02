@@ -52,8 +52,6 @@ namespace Nitrilon.DataAccess
         }
 
         // Delete member by id
-        // * Might change
-
         public void DeleteMember(int memberId)
         {
             string sql = $"DELETE FROM Members WHERE MemberId = {memberId};";
@@ -65,7 +63,6 @@ namespace Nitrilon.DataAccess
         }
 
         // Update member by id
-        // * Might change
         public void UpdateMember(Member member)
         {
             string sql = $"UPDATE Members SET MembershipId = {member.MembershipId}, Name = '{member.Name}', JoinDate = '{member.JoinDate}', PhoneNumber = '{member.PhoneNumber}', EmailAdress = '{member.EmailAdress}' WHERE MemberId = {member.MemberId};";
