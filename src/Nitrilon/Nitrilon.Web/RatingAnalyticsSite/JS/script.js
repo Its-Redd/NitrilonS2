@@ -31,7 +31,6 @@ function findRatingsByEventId(eventId) {
   let goodRatingCount = 0;
   let neutralRatingCount = 0;
   let badRatingCount = 0;
-  let totalElement = document.createElement("p");
   fetch(`https://localhost:7056/api/EventRatings?eventId=${eventId}`)
     .then((response) => {
       if (!response.ok) {
@@ -75,7 +74,6 @@ function createChart(happy, neutral, sad) {
 
   if (myChart && typeof myChart.destroy === "function") {
     myChart.destroy();
-    totalElement.textContent = "";
   }
   let ctx = document.querySelector("#myChart").getContext("2d");
 
@@ -137,7 +135,6 @@ function createChart(happy, neutral, sad) {
         tooltip: {
           callbacks: {
             label: function (context) {
-              let totalCount = happy + neutral + sad;
               let label = context.dataset.label || "";
               if (label) {
                 label += ": ";
@@ -155,9 +152,5 @@ function createChart(happy, neutral, sad) {
 
   // Display the count of each value
 
-  let totalCount = happy + neutral + sad;
-    totalElement.textContent = `Ratings i alt: ${totalCount}`;
-  let main = document.querySelector("main");
-  main.prepend(totalElement);
 
 }
