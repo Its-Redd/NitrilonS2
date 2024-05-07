@@ -32,7 +32,7 @@ fetch("https://localhost:7056/api/Member")
         p4.id = "email";
 
 
-        del.textContent = "Delete";
+        del.textContent = "Slet";
         del.id = "delete";
 
         del.addEventListener("click", function() {
@@ -52,7 +52,7 @@ fetch("https://localhost:7056/api/Member")
             }
         });
 
-        edit.textContent = "Edit";
+        edit.textContent = "Rediger";
         edit.id = "edit";
         edit.addEventListener("click", function() {
             // Create a modal element
@@ -64,13 +64,13 @@ fetch("https://localhost:7056/api/Member")
 
             // Create input elements for editing member data
             let nameLabel = document.createElement("label");
-            nameLabel.textContent = "Name:";
+            nameLabel.textContent = "Navn:";
             let nameInput = document.createElement("input");
             nameInput.type = "text";
             nameInput.value = Member.name;
 
             let membershipLabel = document.createElement("label");
-            membershipLabel.textContent = "Membership:";
+            membershipLabel.textContent = "Medlemskab:";
             let membershipSelect = document.createElement("select");
             let activeOption = document.createElement("option");
             activeOption.value = 1;
@@ -83,25 +83,25 @@ fetch("https://localhost:7056/api/Member")
             membershipSelect.value = Member.membershipId;
 
             let joinDateLabel = document.createElement("label");
-            joinDateLabel.textContent = "Join Date:";
+            joinDateLabel.textContent = "Medlem siden:";
             let joinDateInput = document.createElement("input");
             joinDateInput.type = "date";
             joinDateInput.value = Member.joinDate.split("T")[0];
 
             let phoneNumberLabel = document.createElement("label");
-            phoneNumberLabel.textContent = "Phone Number:";
+            phoneNumberLabel.textContent = "Telefon nummer:";
             let phoneNumberInput = document.createElement("input");
             phoneNumberInput.type = "text";
             phoneNumberInput.value = Member.phoneNumber;
 
             let emailLabel = document.createElement("label");
-            emailLabel.textContent = "Email Address:";
+            emailLabel.textContent = "Email Adresse:";
             let emailInput = document.createElement("input");
             emailInput.type = "email";
             emailInput.value = Member.emailAdress;
 
             let saveButton = document.createElement("button");
-            saveButton.textContent = "Save";
+            saveButton.textContent = "Gem";
             saveButton.addEventListener("click", function() {
                 // Update member data
                 Member.name = nameInput.value;
@@ -184,12 +184,12 @@ fetch("https://localhost:7056/api/Member")
     
         // Create input elements for adding a new member
         let nameLabel = document.createElement("label");
-        nameLabel.textContent = "Name:";
+        nameLabel.textContent = "Navn:";
         let nameInput = document.createElement("input");
         nameInput.type = "text";
     
         let membershipLabel = document.createElement("label");
-        membershipLabel.textContent = "Membership:";
+        membershipLabel.textContent = "Medlemskab:";
         let membershipSelect = document.createElement("select");
         let activeOption = document.createElement("option");
         activeOption.value = 1;
@@ -201,22 +201,22 @@ fetch("https://localhost:7056/api/Member")
         membershipSelect.appendChild(passiveOption);
     
         let joinDateLabel = document.createElement("label");
-        joinDateLabel.textContent = "Join Date:";
+        joinDateLabel.textContent = "Medlem siden:";
         let joinDateInput = document.createElement("input");
         joinDateInput.type = "date";
     
         let phoneNumberLabel = document.createElement("label");
-        phoneNumberLabel.textContent = "Phone Number:";
+        phoneNumberLabel.textContent = "Telefon nummer:";
         let phoneNumberInput = document.createElement("input");
         phoneNumberInput.type = "text";
     
         let emailLabel = document.createElement("label");
-        emailLabel.textContent = "Email Address:";
+        emailLabel.textContent = "Email Adressse:";
         let emailInput = document.createElement("input");
         emailInput.type = "email";
     
         let saveButton = document.createElement("button");
-        saveButton.textContent = "Add";
+        saveButton.textContent = "Opret";
         saveButton.addEventListener("click", function() {
             // Create a new member
             let member = {
