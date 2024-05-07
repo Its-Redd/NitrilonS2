@@ -87,6 +87,9 @@
             get => emailAdress;
             set
             {
+                // would be better to use a regex to validate email address but
+                // since i dont have the time to implement it,
+                // i will just check if the string is null or empty
                 if (string.IsNullOrWhiteSpace(value))
                 {
                     value = "Emailadresse ikke tilknyttet";

@@ -11,7 +11,10 @@ namespace Nitrilon.DataAccess
 
         }
 
-        // Get all members from database and return them as a list
+        /// <summary>
+        /// Get all members from the database and return them as a list.
+        /// </summary>
+        /// <returns>A list of Member objects.</returns>
         public IEnumerable<Member> GetAllMembers()
         {
             List<Member> members = new List<Member>();
@@ -40,7 +43,10 @@ namespace Nitrilon.DataAccess
             return members;
         }
 
-        // Create member
+        /// <summary>
+        /// Create a new member in the database.
+        /// </summary>
+        /// <param name="member">The Member object to create.</param>
         public void CreateMember(Member member)
         {
             string sql = $"INSERT INTO Members (MembershipId, Name, JoinDate, PhoneNumber, EmailAdress) VALUES ({member.MembershipId}, '{member.Name}', '{member.JoinDate}', '{member.PhoneNumber}', '{member.EmailAdress}');";
@@ -51,7 +57,10 @@ namespace Nitrilon.DataAccess
             CloseConnection();
         }
 
-        // Delete member by id
+        /// <summary>
+        /// Delete a member from the database by their ID.
+        /// </summary>
+        /// <param name="member">The Member object to delete.</param>
         public void DeleteMember(Member member)
         {
             string sql = $"DELETE FROM Members WHERE MemberId = {member.MemberId};";
@@ -62,7 +71,10 @@ namespace Nitrilon.DataAccess
             CloseConnection();
         }
 
-        // Update member by id
+        /// <summary>
+        /// Update a member in the database by their ID.
+        /// </summary>
+        /// <param name="member">The Member object to update.</param>
         public void UpdateMember(Member member)
         {
             string sql = $"UPDATE Members SET MembershipId = {member.MembershipId}, Name = '{member.Name}', JoinDate = '{member.JoinDate}', PhoneNumber = '{member.PhoneNumber}', EmailAdress = '{member.EmailAdress}' WHERE MemberId = {member.MemberId};";
@@ -72,8 +84,5 @@ namespace Nitrilon.DataAccess
 
             CloseConnection();
         }
-
-
-
     }
 }
