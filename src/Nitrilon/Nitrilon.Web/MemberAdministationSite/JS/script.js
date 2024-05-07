@@ -126,7 +126,7 @@ fetch("https://localhost:7056/api/Member")
             });
 
             let cancelButton = document.createElement("button");
-            cancelButton.textContent = "Cancel";
+            cancelButton.textContent = "Annuller";
             cancelButton.addEventListener("click", function() {
                 // Close the modal without saving changes
                 modal.remove();
@@ -243,7 +243,7 @@ fetch("https://localhost:7056/api/Member")
         });
     
         let cancelButton = document.createElement("button");
-        cancelButton.textContent = "Cancel";
+        cancelButton.textContent = "Annuller";
         cancelButton.addEventListener("click", function() {
             // Close the modal without saving the new member
             modal.remove();
