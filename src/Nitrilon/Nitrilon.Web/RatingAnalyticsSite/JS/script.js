@@ -149,8 +149,4 @@ function createChart(happy, neutral, sad) {
       },
     },
   });
-
-  // Display the count of each value
-
-
 }
