@@ -48,6 +48,16 @@ ul li p {
     text-align: right;
 }
 
+#add {
+    background-color: #ff9f1c;
+    color: #ffffff;
+    border: none;
+    margin: 10px 10px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
 #delete {
     background-color: #ff4b5c;
     color: #ffffff;

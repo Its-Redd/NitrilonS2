@@ -173,16 +173,106 @@ fetch("https://localhost:7056/api/Member")
     console.error("Error fetching Members:", error);
   });
 
-  // Create a new member
-    function createMember(membershipId, name, joinDate, phonenumber, emailadress ) {
-        let member = {
-            membershipId: membershipId,
-            name: name,
-            joinDate: joinDate,
-            phonenumber: phonenumber,
-            emailadress: emailadress
-        };
+  let addMemberButton = document.querySelector("#add");
+  addMemberButton.addEventListener("click", function() {
+        // Create a modal element
+        let modal = document.createElement("div");
+        modal.classList.add("modal");
+    
+        // Create form elements for adding a new member
+        let form = document.createElement("form");
+    
+        // Create input elements for adding a new member
+        let nameLabel = document.createElement("label");
+        nameLabel.textContent = "Name:";
+        let nameInput = document.createElement("input");
+        nameInput.type = "text";
+    
+        let membershipLabel = document.createElement("label");
+        membershipLabel.textContent = "Membership:";
+        let membershipSelect = document.createElement("select");
+        let activeOption = document.createElement("option");
+        activeOption.value = 1;
+        activeOption.textContent = "Aktiv";
+        let passiveOption = document.createElement("option");
+        passiveOption.value = 2;
+        passiveOption.textContent = "Passiv";
+        membershipSelect.appendChild(activeOption);
+        membershipSelect.appendChild(passiveOption);
+    
+        let joinDateLabel = document.createElement("label");
+        joinDateLabel.textContent = "Join Date:";
+        let joinDateInput = document.createElement("input");
+        joinDateInput.type = "date";
+    
+        let phoneNumberLabel = document.createElement("label");
+        phoneNumberLabel.textContent = "Phone Number:";
+        let phoneNumberInput = document.createElement("input");
+        phoneNumberInput.type = "text";
+    
+        let emailLabel = document.createElement("label");
+        emailLabel.textContent = "Email Address:";
+        let emailInput = document.createElement("input");
+        emailInput.type = "email";
+    
+        let saveButton = document.createElement("button");
+        saveButton.textContent = "Add";
+        saveButton.addEventListener("click", function() {
+            // Create a new member
+            let member = {
+                name: nameInput.value,
+                membershipId: parseInt(membershipSelect.value),
+                joinDate: joinDateInput.value,
+                phoneNumber: phoneNumberInput.value,
+                emailAdress: emailInput.value
+            };
+    
+            console.log(member);
+    
+            // Add the new member to the database
+            fetch("https://localhost:7056/api/Member/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(member)
+            });
+    
+            // Close the modal
+            modal.remove();
+        });
+    
+        let cancelButton = document.createElement("button");
+        cancelButton.textContent = "Cancel";
+        cancelButton.addEventListener("click", function() {
+            // Close the modal without saving the new member
+            modal.remove();
+        });
 
-    }
+
+        
+
+        // Append input elements to the form
+        form.appendChild(nameLabel);
+        form.appendChild(nameInput);
+        form.appendChild(membershipLabel);
+        form.appendChild(membershipSelect);
+        form.appendChild(joinDateLabel);
+        form.appendChild(joinDateInput);
+        form.appendChild(phoneNumberLabel);
+        form.appendChild(phoneNumberInput);
+        form.appendChild(emailLabel);
+        form.appendChild(emailInput);
+        form.appendChild(saveButton);
+        form.appendChild(cancelButton);
+
+        // Append the form to the modal
+        modal.appendChild(form);
+
+        // Append the modal to the document body
+        document.body.appendChild(modal);
+    });
+
+
             
         
